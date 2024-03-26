@@ -1,25 +1,21 @@
-import React from 'react';
+import Input from '../../UI/Input';
 import classes from './MealItemForm.module.css';
 
-const MealItemForm = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
+const MealItemForm = (props) => {
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <div className={classes.input}>
-        <label htmlFor="quantity">Quantity:</label>
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          min="1"
-          max="5"
-          defaultValue="1"
-        />
-      </div>
-      <button type="submit">Add</button>
+    <form className={classes.form}>
+      <Input
+        label='Amount'
+        input={{
+          id: 'amount_' + props.id,
+          type: 'number',
+          min: '1',
+          max: '5',
+          step: '1',
+          defaultValue: '1',
+        }}
+      />
+      <button>Add</button>
     </form>
   );
 };

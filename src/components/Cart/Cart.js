@@ -1,40 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import CartItem from './CartItem';
+import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 
-const Backdrop = (props) => {
-  return <div className={classes.backdrop} onClick={props.onClose}/>;
-};
-
-const ModalOverlay = () => {
-  return (
-    <div className={classes.modal}>
-      <CartItem name="Item 1" price="$10" quantity={2} />
-      <CartItem name="Item 2" price="$15" quantity={1} />
-      <div>
-        <span>Total Amount:</span>
-        <span>$50</span>
-      </div>
-      <div>
-        <button>Close</button>
-        <button>Order</button>
-      </div>
-    </div>
-  );
-};
-
-const portalElement = document.getElementById('cart-overlay');
-
 const Cart = (props) => {
+  const cartItems = (
+    <ul className={classes['cart-items']}>
+      {[{ id: 'c1', name: 'Sushi', amount: 2, price: 12.99 }].map((item) => (
+        <li>{item.name}</li>
+      ))}
+    </ul>
+  );
+
   return (
-    <React.Fragment>
-      {ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, portalElement)}
-      {ReactDOM.createPortal(
-        <ModalOverlay />,
-        portalElement
-      )}
-    </React.Fragment>
+    <Modal>
+      {cartItems}
+      <div className={classes.total}>
+        <span>Total Amount</span>
+        <span>35.62</span>
+      </div>
+      <div className={classes.actions}>
+        <button className={classes['button--alt']}>Close</button>
+        <button className={classes.button}>Order</button>
+      </div>
+    </Modal>
   );
 };
 
