@@ -1,0 +1,11 @@
+.meals {
+    margin: auto;
+    width: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    .meals {
+      width: 90%;
+    }
+  }
+  
